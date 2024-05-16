@@ -18,6 +18,7 @@ import shlex
 import shutil
 import subprocess
 import tempfile
+import time
 from contextlib import contextmanager
 
 from docutils import nodes
@@ -409,6 +410,7 @@ class PlantumlBuilder(object):
             if os.name == 'posix':
                 os.fchmod(f.fileno(), os.lstat(outdir).st_mode & 0o666)
             f.close()
+            time.sleep(0.2)
             rename(f.name, outfname)
 
         return outfname
